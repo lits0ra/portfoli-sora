@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>神田蒼空 -Sora Kanda Portfolio Site-</title>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/reset.css">
+    </head>
+    <body>
+        <div id="splash">
+            <p class="name">神田　蒼空</p>
+            <p class="sub-title">PORTFOLIO　WEBSITE</p>
+        </div>
+
+        <div id="overlay">
+            <p class="overlay-text overlay-title">目次</p>
+        </div>
+
+        <div id="main-content" style="display: none;">
+            <header class="appbar">
+                <div class="container">
+                    <div class="logo">Sora's site</div>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </header>
+            <nav class="mobile-nav" id="mobileNav">
+            </nav>
+            <main>
+                <img src="images/_DSC4543.jpg" alt="神田蒼空" class="first-image">
+                <p class="first-text">
+                    思い出を切り取るー
+                </p>
+            </main>
+        </div>
+
+        <script>
+            function adjustSubTitleWidth() {
+                const nameElement = document.querySelector('.name');
+                const subTitleElement = document.querySelector('.sub-title');
+                if (nameElement && subTitleElement) {
+                    const kanjiWidth = nameElement.offsetWidth;
+                    subTitleElement.style.width = kanjiWidth + 'px';
+                    subTitleElement.style.display = 'inline-block';
+                }
+            }
+
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    const splash = document.getElementById('splash');
+                    splash.classList.add('fade-out');
+
+                    splash.addEventListener('transitionend', function() {
+                        splash.style.display = 'none';
+                        const mainContent = document.getElementById('main-content');
+                        mainContent.style.display = 'block';
+                        // メインコンテンツにアニメーション用のクラスを追加
+                        mainContent.classList.add('fade-in');
+
+                        adjustSubTitleWidth();
+                        window.addEventListener('resize', adjustSubTitleWidth);
+
+                        const hamburger = document.getElementById('hamburger');
+                        const mobileNav = document.getElementById('mobileNav');
+                        const overlay = document.getElementById('overlay');
+
+                        hamburger.addEventListener('click', function() {
+                            hamburger.classList.toggle('open');
+                            mobileNav.classList.toggle('active');
+                            overlay.classList.toggle('active');
+                        });
+
+                        overlay.addEventListener('click', function() {
+                            hamburger.classList.remove('open');
+                            mobileNav.classList.remove('active');
+                            overlay.classList.remove('active');
+                        });
+                    });
+                }, 2500);
+            });
+        </script>
+    </body>
+</html>

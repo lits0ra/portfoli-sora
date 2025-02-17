@@ -1,0 +1,200 @@
+/* 名前やサブタイトルのスタイル */
+.name {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    margin-bottom: 20px;
+    font-size: 2.75rem;
+    color: #333;
+}
+
+.sub-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 1.15rem;
+    color: #333;
+}
+
+/* スプラッシュ画面 */
+#splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 2rem;
+    z-index: 9999;
+    transition: opacity 1s ease-out;
+    opacity: 1;
+    text-align: center;
+}
+
+#splash.fade-out {
+    opacity: 0;
+}
+
+/* アプリバー */
+.appbar {
+    height: 30px;
+    padding-top: 16px;
+}
+
+.appbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.logo {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    font-family: 'Ryumin', serif;
+}
+
+/* ハンバーガーメニュー */
+.hamburger {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.hamburger span {
+    display: block;
+    height: 2px;
+    background-color: #000;
+    border-radius: 3px;
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(8px) rotate(-45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(45deg);
+}
+
+@media screen and (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+    .mobile-nav {
+        display: none;
+    }
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(246, 247, 248, 0.6);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 998;
+}
+
+#overlay.active {
+    transform: translateX(0);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.overlay-text {
+    color: #555;
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 20px));
+}
+
+.overlay-title {
+    text-decoration: underline;
+}
+
+#overlay.active .overlay-text {
+    animation: floatUp 0.6s ease forwards 0.3s;
+}
+
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, calc(-50% + 20px));
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.first-image {
+    display: block;
+    transform: perspective(1000px) translateZ(20px);
+    width: 90%;
+    height: auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+/* 「思い出を切り取る」テキストのスタイル */
+/* ここで opacity を 0 にしておき、slideInFromLeft アニメーションで横から出現させる */
+.first-text {
+    font-family: 'Hiragino Mincho Pro', serif;
+    text-align: right;
+    padding-top: 48px;
+    padding-right: 24px;
+    font-size: 16px;
+    font-weight: 100;
+    opacity: 0; /* 初期状態は非表示 */
+    animation: slideInFromLeft 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+/* メインコンテンツがボワーっと出現するためのアニメーション */
+@keyframes fadeInBlur {
+    0% {
+        opacity: 0;
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+#main-content.fade-in {
+    animation: fadeInBlur 1s ease-out forwards;
+}
+
+/* 新しいアニメーション: 横から出現する */
+/* この例では、左側から 50px の位置から通常位置に移動しながら表示されます */
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
