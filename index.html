@@ -14,27 +14,30 @@
             <p class="sub-title">PORTFOLIO　WEBSITE</p>
         </div>
 
+        <!-- ヘッダーをメインコンテンツから独立させる -->
+        <header class="appbar" style="display: none;">
+            <div class="container">
+                <div class="logo">Sora's Portfolio</div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </header>
+
         <div id="overlay">
             <p class="overlay-text overlay-title">目次</p>
         </div>
 
+        <nav class="mobile-nav" id="mobileNav"></nav>
+
+        <!-- メインコンテンツ -->
         <div id="main-content" style="display: none;">
-            <header class="appbar">
-                <div class="container">
-                    <div class="logo">Sora's site</div>
-                    <div class="hamburger" id="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </header>
-            <nav class="mobile-nav" id="mobileNav">
-            </nav>
             <main>
                 <img src="images/_DSC4543.jpg" alt="神田蒼空" class="first-image">
                 <p class="first-text">
-                    思い出を切り取るー
+                    思い出を切り取る―
                 </p>
             </main>
         </div>
@@ -57,9 +60,13 @@
 
                     splash.addEventListener('transitionend', function() {
                         splash.style.display = 'none';
+
+                        // ヘッダーはメインコンテンツから独立しているのでこちらで表示
+                        const header = document.querySelector('.appbar');
+                        header.style.display = 'block';
+
                         const mainContent = document.getElementById('main-content');
                         mainContent.style.display = 'block';
-                        // メインコンテンツにアニメーション用のクラスを追加
                         mainContent.classList.add('fade-in');
 
                         adjustSubTitleWidth();
@@ -81,7 +88,7 @@
                             overlay.classList.remove('active');
                         });
                     });
-                }, 2500);
+                }, 1);
             });
         </script>
     </body>

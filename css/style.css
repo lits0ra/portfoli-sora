@@ -37,10 +37,10 @@
     opacity: 0;
 }
 
-/* アプリバー */
 .appbar {
     height: 30px;
     padding-top: 16px;
+    padding-bottom: 8px;
 }
 
 .appbar .container {
@@ -57,7 +57,6 @@
     font-family: 'Ryumin', serif;
 }
 
-/* ハンバーガーメニュー */
 .hamburger {
     width: 30px;
     height: 20px;
@@ -65,7 +64,7 @@
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
-    z-index: 999;
+    z-index: 999999;
 }
 
 .hamburger span {
@@ -156,12 +155,10 @@
     margin-right: 10px;
 }
 
-/* 「思い出を切り取る」テキストのスタイル */
-/* ここで opacity を 0 にしておき、slideInFromLeft アニメーションで横から出現させる */
 .first-text {
     font-family: 'Hiragino Mincho Pro', serif;
     text-align: right;
-    padding-top: 48px;
+    padding-top: 36px;
     padding-right: 24px;
     font-size: 16px;
     font-weight: 100;
@@ -170,7 +167,6 @@
     animation-delay: 0.5s;
 }
 
-/* メインコンテンツがボワーっと出現するためのアニメーション */
 @keyframes fadeInBlur {
     0% {
         opacity: 0;
@@ -186,8 +182,6 @@
     animation: fadeInBlur 1s ease-out forwards;
 }
 
-/* 新しいアニメーション: 横から出現する */
-/* この例では、左側から 50px の位置から通常位置に移動しながら表示されます */
 @keyframes slideInFromLeft {
     0% {
         transform: translateX(-50px);
